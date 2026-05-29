@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+streamlit
+langchain
+langchain-community
+unstructured[pdf]
+python-docx
+cohere
+psycopg2-binary
+pgvector
+python-dotenv
+httpx 
