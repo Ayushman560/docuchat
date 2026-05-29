@@ -1,32 +1,38 @@
-# Driver's Drowsiness Detection System
+# DocuChat — RAG-Based Document Q&A
 
-A real-time driver drowsiness detection system using computer vision and deep learning that monitors eye state to detect fatigue and trigger alerts, helping prevent road accidents caused by drowsy driving.
+An intelligent document Q&A system powered by Retrieval-Augmented Generation (RAG) that lets you upload PDF or DOCX files and ask natural language questions, receiving accurate answers with source citations.
 
 ## Demo
-The system continuously monitors the driver's eyes through a webcam. When drowsiness is detected for consecutive frames, an audio alarm is triggered immediately.
+Upload any PDF or DOCX → Ask a question → Get an AI-powered answer with the exact document, page, and chunk it came from.
 
 ## Features
-- Real-time eye state detection via webcam
-- Facial landmark detection with 68 keypoints using dlib
-- CNN-based eye classifier trained on open/closed eye dataset
-- Audio alert system triggered on drowsiness detection
-- Works under varying lighting conditions and head poses
+- Upload PDF and DOCX documents via a clean web interface
+- Ask natural language questions about your documents
+- Get citation-backed answers showing document name and chunk
+- Semantic search using vector embeddings for accurate retrieval
+- Fast vector similarity search with PostgreSQL + pgvector
+- RESTful API backend with FastAPI
+- Interactive Streamlit frontend
 
 ## How It Works
-1. Webcam captures real-time video frames
-2. dlib detects 68 facial landmarks on the face
-3. Eye region is extracted from the landmarks
-4. CNN model classifies eye as open or closed
-5. If eyes remain closed for N consecutive frames, alarm triggers
+1. Upload a PDF or DOCX file through the Streamlit UI
+2. Document is parsed and split into semantic chunks
+3. Each chunk is embedded using Cohere embeddings
+4. Embeddings are stored in PostgreSQL with pgvector
+5. User asks a question — it gets embedded the same way
+6. Top 5 most similar chunks are retrieved from the database
+7. Cohere LLM generates an answer grounded in those chunks
+8. Answer is displayed with source citations
 
 ## Tech Stack
 - Python
-- OpenCV
-- dlib
-- TensorFlow / Keras
-- PyTorch
-- pygame
-- CNN (Convolutional Neural Network)
-- Eye Aspect Ratio (EAR)
+- FastAPI
+- Streamlit
+- LangChain
+- Cohere Embeddings
+- PostgreSQL + pgvector
+- pypdf
+- python-dotenv
+- httpx
 
 ## Project Structure
